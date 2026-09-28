@@ -30,7 +30,7 @@
 | LAND | Landing Page | Guest |
 | PKG | Gói tập & Đăng ký hội viên | Member, Admin |
 | PAY | Thanh toán | Member, Admin |
-| CHK | Check-in (QR / Face ID) | Member, Admin |
+| CHK | Check-in (Face ID) | Member, Admin |
 | BODY | Chỉ số cơ thể (InBody) | Member, Trainer, AI Service |
 | PLAN | Kế hoạch tập luyện & dinh dưỡng | Member, Trainer, AI Service |
 | APPT | Lịch hẹn với PT | Member, Trainer |
@@ -39,7 +39,6 @@
 | NOTI | Thông báo | Tất cả |
 | ADM | Quản trị hệ thống | Admin |
 | RPT | Báo cáo & Thống kê | Admin |
-| BOT | Chatbot tư vấn (mở rộng) | Guest, Member |
 
 ---
 
@@ -86,9 +85,8 @@
 
 ### 2.5. CHK – Check-in
 
-- **FR-CHK-01 (M):** Member hiển thị mã QR động (có thời hạn) trên app để check-in.
-- **FR-CHK-02 (M):** Thiết bị tại quầy quét QR, hệ thống xác thực và ghi nhận `CheckIn`.
 - **FR-CHK-03 (S):** Member check-in bằng nhận diện khuôn mặt (Face Recognition) tại quầy.
+- **FR-CHK-03 (S):** Hệ thống kết nối với một webcam bên ngoài để tại quầy để quét mặt.
 - **FR-CHK-04 (M):** Hệ thống từ chối check-in nếu `Membership` hết hạn/bị tạm dừng, hiển thị lý do.
 - **FR-CHK-05 (M):** Member xem lịch sử check-in (số buổi tập theo tuần/tháng).
 - **FR-CHK-06 (M):** Admin xem nhật ký check-in theo thời gian thực.
@@ -97,7 +95,7 @@
 ### 2.6. BODY – Chỉ số cơ thể (InBody)
 
 - **FR-BODY-01 (M):** Member chụp/tải ảnh phiếu kết quả InBody lên app.
-- **FR-BODY-02 (M):** AI Service trích xuất chỉ số (cân nặng, % mỡ, khối lượng cơ, BMI, BMR, mỡ nội tạng…) từ ảnh.
+- **FR-BODY-02 (M):** Member có thể tự điền các chỉ số cơ thể cá nhân(cân nặng, % mỡ, khối lượng cơ, BMI, BMR, mỡ nội tạng…).
 - **FR-BODY-03 (M):** Member xem lại và chỉnh sửa kết quả trích xuất trước khi lưu `BodyMetric`.
 - **FR-BODY-04 (S):** Member nhập chỉ số thủ công (không cần ảnh).
 - **FR-BODY-05 (M):** Member xem lịch sử chỉ số dạng bảng và biểu đồ xu hướng.
@@ -105,13 +103,20 @@
 
 ### 2.7. PLAN – Kế hoạch tập luyện & dinh dưỡng
 
-- **FR-PLAN-01 (M):** Member khai báo mục tiêu (giảm mỡ, tăng cơ, duy trì), trình độ, số buổi/tuần.
+- **FR-PLAN-01 (M):** Member khai báo mục tiêu (giảm mỡ, tăng cơ, duy trì, tập để khoẻ khoắn dẻo dai, thi đấu, có thân hình đẹp,...), trình độ, số buổi/tuần, tình trạng chấn thương, sở thích tập luyện, bài tập yêu thích.
+- **FR-PLAN-01 (M):** Chế độ ăn uống sẽ cần hỏi thêm: chi phí cho ăn uống, món ăn yêu thích, dị ứng,.. Đồng thời phân ra 2 kiểu tư vấn: thông tin cơ bản(không đi vào chi tiết, chỉ khuyên những thông tin cơ bản món nào nên ăn, món nào hạn chế,...), chi tiết (lên thực đơn theo macro,  cho từng bữa, từng ngày,...).
 - **FR-PLAN-02 (M):** AI Service gợi ý `WorkoutPlan` dựa trên mục tiêu và `BodyMetric` gần nhất.
-- **FR-PLAN-03 (M):** AI Service gợi ý `MealPlan` (calo, macro, thực đơn mẫu).
-- **FR-PLAN-04 (M):** Trainer tạo/chỉnh sửa `WorkoutPlan`, `MealPlan` cho Member.
+- **FR-PLAN-04 (M):** AI Service gợi ý `MealPlan` (calo, macro, thực đơn mẫu).
+- **FR-PLAN-05 (M):** Trainer tạo/chỉnh sửa `WorkoutPlan`, `MealPlan` cho Member.
 - **FR-PLAN-05 (S):** Trainer duyệt/điều chỉnh kế hoạch do AI gợi ý trước khi áp dụng.
 - **FR-PLAN-06 (M):** Member xem kế hoạch theo ngày/tuần, đánh dấu bài tập đã hoàn thành.
-- **FR-PLAN-07 (S):** Trainer theo dõi tiến độ thực hiện kế hoạch của Member.
+- **FR-PLAN-06 (M):** Member điền được cân nặng theo từng tuần, để AI service đánh giá và lên lịch ăn uống phù hợp hơn.
+- **FR-PLAN-06 (M):** Member có thể điền mức tạ số rep, số set vào các bài tập để member dễ dàng theo dõi sự tăng tiến.
+- **FR-PLAN-03 (M):** Hệ thống sẽ có khả năng theo dõi lịch tập luyện người dùng dựa theo tracking của lịch tập, nếu member nghỉ tập 1, 2 buổi cần gửi thông báo cho member. Nghỉ 1 buổi gửi thông báo, nghỉ đến buổi thứ 2 gửi thông báo, nghỉ tròn 1 tuần thì thông báo.
+- **FR-PLAN-03 (M):** Nếu người dùng nghỉ 1 buổi hoặc nhiều hơn thì cần lên lại lịch tập mới (phù hợp với lịch cũ và thời gian nghỉ vừa qua).
+- **FR-PLAN-03 (M):** Hệ thống sẽ lên lịch tập luyện theo tuần cho member, ưu tiên duy trì lịch tập để tiện theo dõi sự tăng tiến, những member hay bỏ tập cần lên lại lịch tập để đúng với thời gian tập luyện của member.
+- **FR-PLAN-07 (S):** Với member có Trainer thì trainer sẽ là người submit hoàn thành buổi tập hay không.
+- **FR-PLAN-07 (S):** Member có thể tạo lịch mới nếu thấy không phù hợp. Lịch sử của lịch tập cũ sẽ được lưu lại.
 
 ### 2.8. APPT – Lịch hẹn với PT
 
@@ -124,7 +129,7 @@
 
 ### 2.9. EXE – Thư viện bài tập & Video
 
-- **FR-EXE-01 (M):** Member tra cứu bài tập (`Exercise`) theo nhóm cơ, dụng cụ, độ khó.
+- **FR-EXE-01 (M):** Member tra cứu bài tập (`Exercise`) theo nhóm cơ, mục đích(kháng lực, cardio,hybrid, phục hồi,...), dụng cụ, độ khó.
 - **FR-EXE-02 (M):** Member xem video hướng dẫn và mô tả kỹ thuật bài tập.
 - **FR-EXE-03 (M):** Admin/Trainer thêm/sửa/xóa bài tập và video.
 - **FR-EXE-04 (C):** Member lưu bài tập yêu thích.
@@ -135,6 +140,7 @@
 - **FR-CHAT-02 (S):** Người dùng gửi văn bản và hình ảnh.
 - **FR-CHAT-03 (S):** Người dùng xem lịch sử hội thoại, trạng thái đã đọc.
 - **FR-CHAT-04 (C):** Admin xử lý báo cáo tin nhắn vi phạm.
+- **FR-CHAT-04 (C):** PT có thể xem được chỉ số cá nhân(inbody, cân nặng chiều cao,...), lịch sử tập luyện của member.
 
 ### 2.11. NOTI – Thông báo
 
@@ -145,6 +151,7 @@
 - **FR-NOTI-05 (M):** Người dùng xem danh sách thông báo trong app.
 
 ### 2.12. ADM – Quản trị hệ thống (Web Admin)
+
 
 - **FR-ADM-01 (M):** Admin quản lý Member: xem, tìm kiếm, khóa/mở khóa, xem gói tập và lịch sử.
 - **FR-ADM-02 (M):** Admin quản lý Trainer: tạo tài khoản, cập nhật hồ sơ, khóa tài khoản.
@@ -162,13 +169,8 @@
 - **FR-RPT-04 (S):** Admin xem thống kê hiệu suất Trainer (số buổi, số Member).
 - **FR-RPT-05 (C):** Admin xuất báo cáo ra Excel/PDF.
 
-### 2.14. BOT – Chatbot tư vấn (Phạm vi mở rộng)
-
-- **FR-BOT-01 (C):** Guest/Member hỏi đáp thông tin phòng gym (giờ mở cửa, gói tập, giá).
-- **FR-BOT-02 (C):** Chatbot trả lời câu hỏi cơ bản về tập luyện, dinh dưỡng.
-- **FR-BOT-03 (C):** Chatbot chuyển tiếp sang PT/Admin khi không trả lời được.
-
----
+### 2.12. Trainer lên lịch và duyệt lịch ăn uống cho member (Giao diện Website)
+- Trainer lên lịch tập cụ thể và ăn uống cho member có thuê PT.
 
 ## 3. Ma trận Tác nhân – Module
 
@@ -193,7 +195,7 @@
 
 ## 4. Thực thể nghiệp vụ chính (tham chiếu cho ERD / Class Diagram)
 
-`User`, `Member`, `Trainer`, `Admin`, `MembershipPackage`, `Membership`, `Payment`, `CheckIn`, `FaceData`, `BodyMetric`, `WorkoutPlan`, `MealPlan`, `Exercise`, `TrainerSchedule`, `Appointment`, `Conversation`, `Message`, `Notification`, `Promotion`
+`User`, `Member`, `Trainer`, `Admin`, `MembershipPackage`, `Membership`, `Payment`, `CheckIn`, `FaceData`, `BodyMetric`, `WorkoutPlan`, `MealPlan`, `Exercise`, `TrainerSchedule`, `Appointment`, `Conversation`, `Message`, `Notification`, `Promotion`.
 
 ---
 
